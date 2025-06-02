@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Software Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e5e7eb; /* gray-200 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9ca3af; /* gray-400 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* gray-500 */
+        }
+        .section {
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-top: 7.5rem; /* Increased slightly for navbar */
+            padding-bottom: 3rem; /* Increased for better spacing */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            border: 1px solid #e5e7eb; /* gray-200 */
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05); /* custom very light shadow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* More subtle hover */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07); /* slightly more pronounced on hover */
+        }
+        .nav-link.active {
+            font-weight: 700;
+            color: #000000; /* Black for active link */
+        }
+        .section-title-underline {
+            width: 5rem; /* 80px */
+            height: 0.25rem; /* 4px */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 3rem; /* 48px */
+            background-color: #1f2937; /* gray-800 */
+        }
+        .service-card-icon {
+            width: 2rem; /* 48px */
+            height: 2rem; /* 48px */
+            margin-bottom: 1rem; /* 16px */
+            color: #374151; /* gray-700 */
+        }
+        .skill-tag {
+            display: inline-block;
+            background-color: #e5e7eb; /* gray-200 */
+            color: #374151; /* gray-700 */
+            padding: 0.25rem 0.75rem; /* py-1 px-3 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.675rem; /* text-sm */
+            font-weight: 500; /* medium */
+            margin-right: 0.3rem; /* mr-2 */
+            margin-bottom: 0.3rem; /* mb-2 */
+            border: 1px solid #d1d5db; /* gray-300 */
+        }
+        .skill-tag:hover {
+            background-color: #d1d5db; /* gray-300 */
+            color: #1f2937; /* gray-800 */
+        }
+        .social-icon-hero {
+            color: #4b5563; /* gray-600 */
+            transition: color 0.2s ease-in-out;
+        }
+        .social-icon-hero:hover {
+            color: #000000; /* black */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <nav id="navbar" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto max-w-[calc(100%-2rem)] sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl bg-white/80 backdrop-blur-md transition-all duration-300 rounded-2xl border border-gray-200/80">
+        <div class="flex items-center justify-between px-4 py-3 gap-10 xl:gap-20 xl:p-5">
+            <a href="#hero" class="text-xl font-bold text-black hover:text-gray-700 transition-colors nav-link whitespace-nowrap">Job Okosun</a>
+            <div class="hidden md:flex space-x-2 lg:space-x-3">
+                <a href="#hero" class="nav-link text-gray-700 hover:text-black transition-colors px-3 py-2 rounded-md text-sm whitespace-nowrap">About</a>
+                <a href="#skills" class="nav-link text-gray-700 hover:text-black transition-colors px-3 py-2 rounded-md text-sm whitespace-nowrap">Skills</a>
+                <a href="#projects" class="nav-link text-gray-700 hover:text-black transition-colors px-3 py-2 rounded-md text-sm whitespace-nowrap">Projects</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none p-1">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 rounded-b-2xl overflow-hidden border-t border-gray-200/80">
+            <a href="#hero" class="block nav-link text-gray-700 hover:text-black hover:bg-gray-50 transition-colors py-3 px-4 text-sm">About</a>
+            <a href="#skills" class="block nav-link text-gray-700 hover:text-black hover:bg-gray-50 transition-colors py-3 px-4 text-sm border-t border-gray-200/50">Skills</a>
+            <a href="#projects" class="block nav-link text-gray-700 hover:text-black hover:bg-gray-50 transition-colors py-3 px-4 text-sm border-t border-gray-200/50">Projects</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="section flex items-center justify-center bg-gradient-to-br from-white via-gray-50 to-gray-200 text-center px-4">
+        <div class="max-w-3xl py-32">
+            <h1 class="text-4xl md:text-6xl font-bold text-black mb-6">
+                Hi, I'm <span class="text-gray-700">Job Okosun</span>.
+            </h1>
+            <p class="text-xl md:text-xl text-gray-600 mb-6">
+                A Software Engineer | I think, build, ship innovative software products.
+            </p>
+            <p class="text-lg text-gray-500 mb-10 max-w-xl mx-auto">
+                Based in Lagos, Nigeria, I current have an extensive 5 years of experience building and maintaining scalable applications.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 my-20">
+                <a href="#projects" class="bg-black hover:bg-gray-800 text-white font-semibold px-5 py-3 md:py-2 rounded text-xs w-full sm:w-auto">
+                    Explore My Work
+                </a>
+                <a href="./assets/JOB-OKOSUN-RESUME.pdf" download="" class="bg-gray-200 hover:bg-gray-300 text-black font-semibold px-5 py-2 md:py-2 rounded text-xs w-full sm:w-auto">
+                    Get my Resume
+                </a>
+                <div class="flex justify-center items-center space-x-4">
+                    <a href="https://github.com/jobson-okosun" target="_blank" rel="noopener noreferrer" class="social-icon-hero" title="GitHub">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.074 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.017C22 6.484 17.522 2 12 2Z" clip-rule="evenodd" /></svg>
+                        <span class="sr-only">GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/jobson-okosun/" target="_blank" rel="noopener noreferrer" class="social-icon-hero" title="LinkedIn">
+                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span class="sr-only">LinkedIn</span>
+                    </a>
+                    <a href="https://x.com/jsincerelyb" target="_blank" rel="noopener noreferrer" class="social-icon-hero" title="Twitter / X">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        <span class="sr-only">X</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section bg-white py-16 md:py-24 px-4">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-black text-center mb-3">Technical Skills</h2>
+            <div class="section-title-underline"></div>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+                I have experience with a diverse range of technologies and tools, allowing me to adapt to various project requirements and deliver on my role.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Frontend Development</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Building responsive and interactive user interfaces with modern frameworks and libraries, focusing on usability and performance.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Technologies:</h4>
+                        <div>
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Typescript</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.03 1.123 0 1.131.094 1.976 1.057 1.976 2.192V7.5M8.25 7.5h7.5M8.25 7.5V9a.75.75 0 01-.75.75H5.625a.75.75 0 01-.75-.75V7.5m7.5 0V9A.75.75 0 0015 9.75h2.25a.75.75 0 00.75-.75V7.5M3 13.5h18M3 17.25h18" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5h18M3 7.5a2.25 2.25 0 00-2.25 2.25v9.75c0 .996.626 1.858 1.5 2.165V21a.75.75 0 00.75.75h16.5a.75.75 0 00.75-.75v-.285c.874-.307 1.5-.969 1.5-2.165V9.75A2.25 2.25 0 0019.5 7.5M3 7.5H1.75m19.5 0H21" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Backend Development</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Creating robust server-side applications, APIs, and database integrations, ensuring scalability and security.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Technologies:</h4>
+                        <div>
+                            <span class="skill-tag">Aws</span>
+                            <span class="skill-tag">Node</span>
+                            <span class="skill-tag">Nest.Js</span>
+                            <span class="skill-tag">Express.Js</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Python/FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <svg class="service-card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5V6.108c0-1.135.845-2.098 1.976-2.192.373-.03.748-.03 1.123 0 1.131.094 1.976 1.057 1.976 2.192V7.5M8.25 7.5h7.5M8.25 7.5V9a.75.75 0 01-.75.75H5.625a.75.75 0 01-.75-.75V7.5m7.5 0V9A.75.75 0 0015 9.75h2.25a.75.75 0 00.75-.75V7.5M3 13.5h18M3 17.25h18" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7.5h18M3 7.5a2.25 2.25 0 00-2.25 2.25v9.75c0 .996.626 1.858 1.5 2.165V21a.75.75 0 00.75.75h16.5a.75.75 0 00.75-.75v-.285c.874-.307 1.5-.969 1.5-2.165V9.75A2.25 2.25 0 0019.5 7.5M3 7.5H1.75m19.5 0H21" />
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Database Technologies</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Creating robust server-side applications, APIs, and database integrations, ensuring scalability and security.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Technologies:</h4>
+                        <div>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Mongodb</span>
+                            <span class="skill-tag">Mongoose</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Elasticsearch</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Mobile Development</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Creating robust server-side applications, APIs, and database integrations, ensuring scalability and security.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Tools:</h4>
+                        <div>
+                            <span class="skill-tag">Angular/IONIC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">DevOP Tools</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Creating robust server-side applications, APIs, and database integrations, ensuring scalability and security.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Tools:</h4>
+                        <div>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Jenkins</span>
+                            <span class="skill-tag">CircleCI</span>
+                            <span class="skill-tag">Github Actions </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card p-6 md:p-8 flex flex-col gap-y-6">
+                    <div class="flex-shrink-0">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Testing Frameworks</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Creating robust server-side applications, APIs, and database integrations, ensuring scalability and security.
+                        </p>
+                    </div>
+                    <div class="mt-auto border-t border-gray-200"> 
+                        <h4 class="text-sm font-semibold text-gray-500 my-4">Tools:</h4>
+                        Jest, Mocha, Cypress
+                        <div>
+                            <span class="skill-tag">Jest</span>
+                            <span class="skill-tag">Mocha</span>
+                            <span class="skill-tag">Cypress</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-gradient-to-br from-white via-gray-50 to-gray-200 py-16 md:py-24 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-black text-center mb-3">Featured Projects</h2>
+            <div class="section-title-underline"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card overflow-hidden">
+                    <img src="./assets/inkmind.png" alt="Project Alpha" class="w-full h-52 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-black mb-2">InkMind Api</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            InkMind is a robust and efficient backend API built with Node.js, Express, and MongoDB, designed to be the core of a modern note-taking application. This project showcases a comprehensive set of features for managing personal and professional notes.
+                        </p>
+                        <div class="mb-8 space-x-2">
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">Node</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">Express.js</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">MongoDB</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">Mongoose</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">Agenda.js</span>
+                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-1 rounded-full">Git</span>
+                        </div>
+                        <a href="https://github.com/jobson-okosun/InkMind-API.git" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-black hover:text-gray-700 font-medium transition-colors group">
+                            View Details <span class="ml-1.5 transform transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center py-10 px-4">
+        <p class="text-gray-600 text-sm">
+            &copy; <span id="currentYear"></span> Job Okosun. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileNavLinks = mobileMenu.querySelectorAll('a.nav-link');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                // Handle resume link placeholder separately if needed, or just let it be a dead link for now
+                if (targetId === '#resume-link-placeholder') {
+                    // Optionally, you could open a modal or a new tab if the resume link were real
+                    console.log('Resume link clicked (placeholder)');
+                    return; 
+                }
+
+                const targetElement = document.querySelector(targetId);
+                const mainNavbarForScroll = document.getElementById('navbar'); 
+
+                if (targetElement && mainNavbarForScroll) {
+                    const navbarHeight = mainNavbarForScroll.offsetHeight;
+                    const navbarStyle = getComputedStyle(mainNavbarForScroll);
+                    const navbarTopOffset = parseFloat(navbarStyle.top) || 0; 
+                    
+                    let scrollTargetPosition = targetElement.offsetTop - (navbarHeight + navbarTopOffset);
+                    scrollTargetPosition -= 32; // ~2rem buffer below navbar
+
+                    window.scrollTo({
+                        top: scrollTargetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active nav link
+                    document.querySelectorAll('nav a.nav-link').forEach(link => link.classList.remove('active'));
+                    
+                    if (!this.closest('#mobile-menu')) { 
+                         const desktopLinkContainer = mainNavbarForScroll.querySelector('div.hidden.md\\:flex');
+                         if (desktopLinkContainer) {
+                            const desktopLink = desktopLinkContainer.querySelector(`a.nav-link[href="${targetId}"]`);
+                            if(desktopLink) desktopLink.classList.add('active');
+                         }
+                         if (targetId === '#hero') { // Ensure hero link (logo) also gets active state
+                             const logoLink = mainNavbarForScroll.querySelector('a.nav-link[href="#hero"]');
+                             if (logoLink) logoLink.classList.add('active');
+                         }
+                    } else {
+                         this.classList.add('active'); // For mobile menu links
+                    }
+                }
+            });
+        });
+
+        // Active navigation link highlighting on scroll
+        const sectionsForScrollSpy = document.querySelectorAll('section[id]');
+        const navLinksForScrollSpy = document.querySelectorAll('nav a.nav-link'); 
+        const mainNavbarForSpy = document.getElementById('navbar'); 
+
+        function updateActiveNavLinkOnScroll() {
+            if (!mainNavbarForSpy || sectionsForScrollSpy.length === 0) return; 
+
+            const navHeight = mainNavbarForSpy.offsetHeight;
+            const navStyle = getComputedStyle(mainNavbarForSpy);
+            const navTopOffset = parseFloat(navStyle.top) || 0;
+            
+            const scrollPositionMarker = window.scrollY + navTopOffset + navHeight + 32; // ~2rem buffer
+
+            let currentSectionId = 'hero'; // Default to hero
+
+            // Check if above the first section threshold
+            if (window.scrollY < sectionsForScrollSpy[0].offsetTop - (navTopOffset + navHeight + 64) ) { // Larger buffer for top
+                 currentSectionId = 'hero';
+            } else {
+                for (let i = sectionsForScrollSpy.length - 1; i >= 0; i--) {
+                    const sectionTop = sectionsForScrollSpy[i].offsetTop;
+                    if (sectionTop <= scrollPositionMarker) {
+                         currentSectionId = sectionsForScrollSpy[i].id;
+                         break;
+                    }
+                }
+            }
+
+            navLinksForScrollSpy.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Initial call & event listener for scroll spy
+        if (sectionsForScrollSpy.length > 0 && navLinksForScrollSpy.length > 0) {
+            setTimeout(updateActiveNavLinkOnScroll, 100); // Delay to ensure layout is stable
+            window.addEventListener('scroll', updateActiveNavLinkOnScroll);
+            window.addEventListener('resize', updateActiveNavLinkOnScroll); // Update on resize too
+        }
+    </script>
+</body>
+</html>
