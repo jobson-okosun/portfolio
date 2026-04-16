@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+.section {
+    min-height: 100vh;
+    padding-top: 7rem;
+    padding-bottom: 5rem;
+    position: relative;
+}
+
+.nav-link.active {
+    color: #22d3ee;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 {
+    transition-delay: 100ms;
+}
+
+.delay-200 {
+    transition-delay: 100ms;
+}
+
+.delay-300 {
+    transition-delay: 200ms;
+}
+
+.delay-400 {
+    transition-delay: 300ms;
+}
+
+.animation-delay-2000 {
+    animation-delay: 1s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 2s;
+}
+
+.glass-nav {
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
