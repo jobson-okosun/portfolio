@@ -72,3 +72,16 @@ body {
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+@media (min-width: 768px) {
+    #experience .timeline-container::before {
+        content: '';
+        position: absolute;
+        left: 33.333333%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 0;
+    }
+}

@@ -1,11 +1,10 @@
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     emailjs.init({ publicKey: "4hMw_SMqumBtuFaAG" });
 
-    const btn = document.querySelector('button[type="button"]');
     const form = document.getElementById('contact-form');
+    const btn = form?.querySelector('button[type="button"]');
 
-
-    btn.addEventListener('click', (e) => {
+    btn?.addEventListener('click', (e) => {
         e.preventDefault();
 
         const originalText = btn.innerHTML;
@@ -14,12 +13,6 @@ window.addEventListener('load', () => {
 
         const serviceID = "service_7jp8jke";
         const templateID = "template_vh4vf5v";
-
-        const params = {
-            name: document.getElementById('name').value,
-            email_: document.getElementById('email_').value,
-            message: document.getElementById('message').value,
-        };
 
         emailjs.sendForm(serviceID, templateID, form)
             .then(() => {
@@ -52,62 +45,62 @@ window.addEventListener('load', () => {
             });
     });
 
-});
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-const mobileMenuBtn = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-
-mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
-
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-});
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link:not([href="#hero"]):not(.font-display)');
-const logoLink = document.querySelector('.nav-link[href="#hero"].font-display');
-
-window.addEventListener('scroll', () => {
-    let current = 'hero';
-    const navHeight = document.getElementById('navbar').offsetHeight + 50;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= (sectionTop - navHeight)) {
-            current = section.getAttribute('id');
-        }
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove('text-cyan-400');
-        if (link.getAttribute('href').includes(current)) {
-            link.classList.add('text-cyan-400');
-        }
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
     });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link:not([href="#hero"]):not(.font-display)');
+
+    window.addEventListener('scroll', () => {
+        let current = 'hero';
+        const navHeight = document.getElementById('navbar').offsetHeight + 50;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= (sectionTop - navHeight)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('text-cyan-400');
+            if (link.getAttribute('href').includes(current)) {
+                link.classList.add('text-cyan-400');
+            }
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+        observer.observe(el);
+    });
+
 });
 
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.15
-};
-
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
-});
 
