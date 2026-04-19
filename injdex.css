@@ -28,7 +28,9 @@ body {
 }
 
 .nav-link.active {
-    color: #22d3ee;
+    color: #22d3ee !important;
+    background-color: rgba(34, 211, 238, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.2);
 }
 
 .reveal {

@@ -61,26 +61,57 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link:not([href="#hero"]):not(.font-display)');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', () => {
-        let current = 'hero';
-        const navHeight = document.getElementById('navbar').offsetHeight + 50;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (scrollY >= (sectionTop - navHeight)) {
-                current = section.getAttribute('id');
-            }
-        });
-
+    function setActiveLink(id) {
         navLinks.forEach(link => {
-            link.classList.remove('text-cyan-400');
-            if (link.getAttribute('href').includes(current)) {
-                link.classList.add('text-cyan-400');
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+                link.classList.add('active');
             }
         });
-    });
+    }
+
+    // Modern Scroll Spy using IntersectionObserver
+    const scrollObserverOptions = {
+        root: null,
+        rootMargin: '-40% 0px -40% 0px',
+        threshold: 0
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                setActiveLink(id);
+                
+                // Update URL hash without scroll jump
+                if (id !== 'hero') {
+                    history.replaceState(null, null, `#${id}`);
+                } else {
+                    history.replaceState(null, null, window.location.pathname + window.location.search);
+                }
+            }
+        });
+    }, scrollObserverOptions);
+
+    sections.forEach(section => scrollObserver.observe(section));
+
+    // Handle initial load and manual hash changes
+    const handleLocation = () => {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            setActiveLink(hash);
+            const target = document.getElementById(hash);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            setActiveLink('hero');
+        }
+    };
+
+    window.addEventListener('hashchange', handleLocation);
+    window.addEventListener('load', handleLocation);
 
     const observerOptions = {
         root: null,
